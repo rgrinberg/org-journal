@@ -896,8 +896,10 @@ it into a list of calendar date elements."
           (org-journal-journals-puthash file)
           (org-journal-dates-puthash file)
           (org-journal-serialize))
+        ;; Remove any file from keys if file is in keys
         (when (member file keys)
           (setq keys (delete file keys))))
+      ;; Keys (files) left means that they don't exists anymore
       (when keys
         (dolist (key keys)
           (remhash key org-journal-dates)
